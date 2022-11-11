@@ -8,6 +8,7 @@ TagManager:
   - TargetBlock
   - Wall
   - Object
+  - Object-Key
   layers:
   - Default
   - TransparentFX
