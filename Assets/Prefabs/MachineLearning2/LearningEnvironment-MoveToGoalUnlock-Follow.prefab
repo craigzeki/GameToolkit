@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2339505360994867738}
   - component: {fileID: 2339505360994867739}
   - component: {fileID: 2339505360994867716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2339505361210682871}
   - component: {fileID: 2339505361210682864}
   - component: {fileID: 2339505361210682865}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2339505361455464452}
   - component: {fileID: 2339505361455464453}
   - component: {fileID: 2339505361455464474}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VanishingWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 2339505361459766895}
   - component: {fileID: 2339505361459766888}
   - component: {fileID: 2339505361459766889}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 2339505362092852637}
   - component: {fileID: 2339505362092852638}
   - component: {fileID: 2339505362092852639}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 2339505362768840205}
   - component: {fileID: 2339505362768840206}
   - component: {fileID: 2339505362768840207}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 5694288178449527398}
   - component: {fileID: 5694288178449527397}
   - component: {fileID: 5694288178449527386}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CollectibleBlockUnlock
   m_TagString: Object-Key
   m_Icon: {fileID: 0}
@@ -993,6 +993,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveableBlock (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1102311721146919912, guid: 43028bd30219938409597528c6c1fef1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6793927457593778359, guid: 43028bd30219938409597528c6c1fef1, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1019,6 +1023,10 @@ PrefabInstance:
     - target: {fileID: 8879983234423785050, guid: 6dde6b89b2ae83e4da7ec7d000af926b, type: 3}
       propertyPath: m_Name
       value: TargetBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879983234423785050, guid: 6dde6b89b2ae83e4da7ec7d000af926b, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8879983234423785057, guid: 6dde6b89b2ae83e4da7ec7d000af926b, type: 3}
       propertyPath: m_RootOrder
@@ -1127,6 +1135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveableBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 1102311721146919912, guid: 43028bd30219938409597528c6c1fef1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6793927457593778359, guid: 43028bd30219938409597528c6c1fef1, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1198,6 +1210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveableBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1102311721146919912, guid: 43028bd30219938409597528c6c1fef1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6793927457593778359, guid: 43028bd30219938409597528c6c1fef1, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1261,6 +1277,10 @@ PrefabInstance:
       propertyPath: unlockObjects.Array.data[0]
       value: 
       objectReference: {fileID: 5694288178449527387}
+    - target: {fileID: 4967186751049175867, guid: f3d04c6cf42f3a449990fa85f304bc4d, type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4967186751049175867, guid: f3d04c6cf42f3a449990fa85f304bc4d, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 11

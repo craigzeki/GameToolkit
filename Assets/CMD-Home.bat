@@ -1,0 +1,1 @@
+%windir%\System32\cmd.exe /K "venv-home\Scripts\activate"
