@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 7
   TakeActionsBetweenDecisions: 1
 --- !u!1 &8054227345779861654
 GameObject:
@@ -195,8 +195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227346070143075}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.29, y: 0.5, z: -4.11}
-  m_LocalScale: {x: 1, y: 1, z: 8.89277}
+  m_LocalPosition: {x: 7.29, y: 1, z: -4.11}
+  m_LocalScale: {x: 1, y: 2, z: 8.89277}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 12
@@ -306,8 +306,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227346074183183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.39, y: 0.5, z: -7.28}
-  m_LocalScale: {x: 1, y: 1, z: 5.384451}
+  m_LocalPosition: {x: 3.39, y: 1, z: -7.28}
+  m_LocalScale: {x: 1, y: 2, z: 5.384451}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 11
@@ -429,8 +429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227346229840891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.98, y: 0.5, z: 0.32999992}
-  m_LocalScale: {x: 1, y: 1, z: 23.317}
+  m_LocalPosition: {x: -11.98, y: 1, z: 0.32999992}
+  m_LocalScale: {x: 1, y: 2, z: 23.317}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 5
@@ -539,8 +539,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227346450381838}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.19, y: 0.5, z: -10.4800005}
-  m_LocalScale: {x: 1, y: 1, z: 23.316998}
+  m_LocalPosition: {x: -0.19, y: 1, z: -10.4800005}
+  m_LocalScale: {x: 1, y: 2, z: 23.316998}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 10
@@ -747,8 +747,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227346840133633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.79, y: 0.5, z: 0.33}
-  m_LocalScale: {x: 1, y: 1, z: 23.317}
+  m_LocalPosition: {x: 11.79, y: 1, z: 0.33}
+  m_LocalScale: {x: 1, y: 2, z: 23.317}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 4
@@ -954,8 +954,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054227347516908433}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.19, y: 0.5, z: 10.57}
-  m_LocalScale: {x: 1, y: 1, z: 23.316998}
+  m_LocalPosition: {x: -0.19, y: 1, z: 10.57}
+  m_LocalScale: {x: 1, y: 2, z: 23.316998}
   m_Children: []
   m_Father: {fileID: 8054227345779861653}
   m_RootOrder: 9
@@ -1045,7 +1045,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_RayLength
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: rayHitColor.b
@@ -1069,11 +1069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_MaxRayDegrees
-      value: 180
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_RaysPerDirection
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_EndVerticalOffset
@@ -1081,7 +1081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_ObservationStacks
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_RayLayerMask.m_Bits
@@ -1120,6 +1120,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_BrainParameters.NumStackedVectorObservations
       value: 1
       objectReference: {fileID: 0}
@@ -1133,7 +1137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223066094460280105, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.67
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8223066094460280105, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1169,7 +1173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407013002760111677, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: MaxStep
-      value: 2500
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8407013002760111677, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: lockedObject

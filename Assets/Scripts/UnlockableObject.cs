@@ -45,7 +45,12 @@ public class UnlockableObject : MonoBehaviour
     private void Update()
     {
         this.GetComponent<Renderer>().enabled = locked;
-        this.GetComponent<Collider>().enabled = locked;
-        
+
+        foreach (Collider col in this.GetComponents<Collider>())
+        {
+            col.enabled = Locked;
+        }
+        //this.GetComponent<Collider>().enabled = locked;
+
     }
 }

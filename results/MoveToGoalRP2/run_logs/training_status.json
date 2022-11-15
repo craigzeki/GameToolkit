@@ -1,0 +1,29 @@
+{
+    "MoveToGoalUnlockRayPerception": {
+        "checkpoints": [
+            {
+                "steps": 249217,
+                "file_path": "results\\MoveToGoalRP2\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-249217.onnx",
+                "reward": -2.3362665300567946,
+                "creation_time": 1668466984.8735495,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalRP2\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-249217.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 249217,
+            "file_path": "results\\MoveToGoalRP2\\MoveToGoalUnlockRayPerception.onnx",
+            "reward": -2.3362665300567946,
+            "creation_time": 1668466984.8735495,
+            "auxillary_file_paths": [
+                "results\\MoveToGoalRP2\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-249217.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.0+cu117"
+    }
+}

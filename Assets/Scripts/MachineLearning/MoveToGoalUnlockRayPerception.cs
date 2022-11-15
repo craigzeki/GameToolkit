@@ -5,6 +5,8 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using System.Runtime.CompilerServices;
+using Unity.MLAgents.Policies;
+using UnityEditor.PackageManager.Requests;
 
 public class MoveToGoalUnlockRayPerception : Agent
 {
@@ -50,26 +52,41 @@ public class MoveToGoalUnlockRayPerception : Agent
     public override void OnEpisodeBegin()
     {
         SpawnPlayer();
+        SpawnCollectibles();
 
         lockedObject.GetComponent<UnlockableObject>().Reset();
-        foreach (GameObject go in unlockObjects)
-        {
-            if (!go.activeSelf) go.SetActive(true);
-            go.GetComponent<Collectible_Unlock>().Reset();
-        }
+        
 
     }
 
     private void SpawnPlayer()
     {
+        
+        transform.localPosition = RandomPosition(initialPosition.y, new Vector3(0.5f,1.1f,0.5f));
+        transform.rotation = initialRotation;
+        transform.localScale = initialScale;
+    }
+
+    private void SpawnCollectibles()
+    {
+        foreach (GameObject go in unlockObjects)
+        {
+            go.transform.localPosition = RandomPosition(0.5f, new Vector3(0.5f, 0.5f, 0.5f));
+            if (!go.activeSelf) go.SetActive(true);
+            go.GetComponent<Collectible_Unlock>().Reset();
+        }
+    }
+
+    private Vector3 RandomPosition(float y, Vector3 halfExtents)
+    {
         LayerMask mask = LayerMask.GetMask("MLAgent-RayTest");
         Vector3 targetPos = Vector3.zero;
-        targetPos.y = initialPosition.y;
+        targetPos.y = y;
 
         do
         {
             targetPos.x = Random.Range(-10, 10);
-            targetPos.z = Random.Range(8, 8);
+            targetPos.z = Random.Range(-8, 8);
 
             if ((targetPos.x > 1.5) && (targetPos.z < -2.6))
             {
@@ -82,16 +99,11 @@ public class MoveToGoalUnlockRayPerception : Agent
                     targetPos.z = -2.6f;
                 }
             }
-        } while ()//TODO)
 
-        transform.localPosition = targetPos;
-        transform.rotation = initialRotation;
-        transform.localScale = initialScale;
-    }
+            
+        } while (Physics.CheckBox(targetPos, halfExtents,Quaternion.identity,mask));
 
-    private void SpawnCollectible()
-    {
-
+        return targetPos;
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -105,11 +117,26 @@ public class MoveToGoalUnlockRayPerception : Agent
         transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * playerMovement.MoveSpeed;
 
         AddReward(existentialPenalty);
+
+        if(!lockedObject.GetComponent<UnlockableObject>().Locked)
+        {
+            float maxReward = 100f / MaxStep;
+            float proximityThreshold = 10f;
+
+            float distance = Vector3.Distance(targetTransform.position, transform.position);
+
+            if (distance < proximityThreshold)
+            {
+                distance = proximityThreshold - distance;
+                AddReward((distance * maxReward) / proximityThreshold);
+            }
+            
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //total 8 values observed
+        //total 12 values observed
 
         //is the wall unlocked? [bool - 1 value]
         sensor.AddObservation(lockedObject.GetComponent<UnlockableObject>().Locked);
@@ -124,7 +151,13 @@ public class MoveToGoalUnlockRayPerception : Agent
         sensor.AddObservation(transform.forward);
 
 
-        
+        //the distance and direction to the collectible objects [Float - 1 value, Vector3 - 3 values]
+        foreach (GameObject go in unlockObjects)
+        {
+            sensor.AddObservation(Vector3.Distance(go.transform.position, transform.position));
+            sensor.AddObservation((go.transform.position - transform.position).normalized);
+        }
+
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -147,7 +180,7 @@ public class MoveToGoalUnlockRayPerception : Agent
                 EndEpisode();
                 break;
             case "Object-Key":
-                AddReward(1f);
+                AddReward(2f);
                 groundMeshRenderer.material = unlockMat;
                 break;
             case "Object":
@@ -156,9 +189,9 @@ public class MoveToGoalUnlockRayPerception : Agent
                 //EndEpisode();
                 break;
             case "Wall":
-                //SetReward(-1f);
-                //groundMeshRenderer.material = loseMat;
-                //EndEpisode();
+                SetReward(-1f);
+                groundMeshRenderer.material = loseMat;
+                EndEpisode();
                 break;
 
         }
