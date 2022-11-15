@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_MaxRayDegrees
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1225123040147485972, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_RaysPerDirection
@@ -1115,6 +1115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player-ml-Agent-unlock-RP
       objectReference: {fileID: 0}
+    - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 10926ad8270f74d458120d9928efc643, type: 3}
     - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_BehaviorType
       value: 0
@@ -1195,6 +1199,10 @@ PrefabInstance:
       propertyPath: unlockObjects.Array.data[0]
       value: 
       objectReference: {fileID: 51763149868717139}
+    - target: {fileID: 8407013002760111677, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
+      propertyPath: unlockObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
 --- !u!1 &1787899371260624838 stripped

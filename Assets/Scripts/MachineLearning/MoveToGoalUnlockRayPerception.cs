@@ -65,6 +65,11 @@ public class MoveToGoalUnlockRayPerception : Agent
         transform.localPosition = RandomPosition(initialPosition.y, new Vector3(0.5f,1.1f,0.5f));
         transform.rotation = initialRotation;
         transform.localScale = initialScale;
+
+        //ensure the agent does not carry any momentum from the last episode
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
     }
 
     private void SpawnCollectibles()
@@ -114,13 +119,13 @@ public class MoveToGoalUnlockRayPerception : Agent
         //force the player movement script to receive inputs from ml-agents instead of the controller
         playerMovement.SetInputValues(new Vector2(moveX, moveZ));
 
-        transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * playerMovement.MoveSpeed;
+        transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.fixedDeltaTime * playerMovement.MoveSpeed;
 
         AddReward(existentialPenalty);
 
         if(!lockedObject.GetComponent<UnlockableObject>().Locked)
         {
-            float maxReward = 100f / MaxStep;
+            float maxReward = 1f / MaxStep;
             float proximityThreshold = 10f;
 
             float distance = Vector3.Distance(targetTransform.position, transform.position);
@@ -180,7 +185,7 @@ public class MoveToGoalUnlockRayPerception : Agent
                 EndEpisode();
                 break;
             case "Object-Key":
-                AddReward(2f);
+                AddReward(0.6f);
                 groundMeshRenderer.material = unlockMat;
                 break;
             case "Object":
@@ -189,9 +194,9 @@ public class MoveToGoalUnlockRayPerception : Agent
                 //EndEpisode();
                 break;
             case "Wall":
-                SetReward(-1f);
+                SetReward(-0.1f);
                 groundMeshRenderer.material = loseMat;
-                EndEpisode();
+                
                 break;
 
         }

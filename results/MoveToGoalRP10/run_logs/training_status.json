@@ -1,0 +1,38 @@
+{
+    "MoveToGoalUnlockRayPerception": {
+        "checkpoints": [
+            {
+                "steps": 499889,
+                "file_path": "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-499889.onnx",
+                "reward": -0.3952349126338959,
+                "creation_time": 1668554041.7307076,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-499889.pt"
+                ]
+            },
+            {
+                "steps": 667958,
+                "file_path": "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-667958.onnx",
+                "reward": null,
+                "creation_time": 1668554178.121815,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-667958.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 667958,
+            "file_path": "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception.onnx",
+            "reward": null,
+            "creation_time": 1668554178.121815,
+            "auxillary_file_paths": [
+                "results\\MoveToGoalRP10\\MoveToGoalUnlockRayPerception\\MoveToGoalUnlockRayPerception-667958.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.0+cu117"
+    }
+}
