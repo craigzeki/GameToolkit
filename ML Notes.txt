@@ -8,6 +8,8 @@ ML Reflection
  - Need to keep it simple
  - 
  
+- time to train - influenced by number of observations and whether 'stacking'
+
  Blog flow
   - What is ML
   - What is MLAgents

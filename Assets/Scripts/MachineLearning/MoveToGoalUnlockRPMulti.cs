@@ -10,10 +10,8 @@ using UnityEditor.PackageManager.Requests;
 
 public class MoveToGoalUnlockRPMulti : Agent
 {
-    [SerializeField] private Transform targetTransform;
     [SerializeField] private PlayerMovement followThisPlayersMovement;
-    [SerializeField] private List<GameObject> unlockObjects;
-    [SerializeField] private GameObject lockedObject;
+    [SerializeField] private UnlockableTargetMulti lockedObject;
 
     [SerializeField] private Material winMat;
     [SerializeField] private Material loseMat;
@@ -29,9 +27,11 @@ public class MoveToGoalUnlockRPMulti : Agent
 
     private PlayerMovement playerMovement;
 
-    private float unlockIncrementReward = 0.5f;
+    //private float unlockIncrementReward = 0.5f;
     private float existentialPenalty = 0f;
+    private bool episodeReady = false;
 
+    private GameObject nearestKey = null;
 
     public override void Initialize()
     {
@@ -42,8 +42,6 @@ public class MoveToGoalUnlockRPMulti : Agent
 
         playerMovement = GetComponent<PlayerMovement>();
 
-        if (unlockObjects.Count > 0) unlockIncrementReward = 0.5f / unlockObjects.Count;
-
         if (MaxStep > 0) existentialPenalty = -1f / MaxStep;
 
         
@@ -52,17 +50,16 @@ public class MoveToGoalUnlockRPMulti : Agent
     public override void OnEpisodeBegin()
     {
         SpawnPlayer();
-        SpawnCollectibles();
-
-        lockedObject.GetComponent<UnlockableObject>().Reset();
-        
-
+        ResetUnlockable();
+        //unlockIncrementReward = 0.5f / lockedObject.KeysRemaining;
+        nearestKey = lockedObject.GetNearestKey(transform.position);
+        episodeReady = true;
     }
 
     private void SpawnPlayer()
     {
+        if (!Helper.SetRandomLocalPositionUnRestricted(transform, 0.5f, new Vector3(0.5f, 1.1f, 0.5f))) Debug.Log("Failed to randomly place player");
         
-        transform.localPosition = RandomPosition(initialPosition.y, new Vector3(0.5f,1.1f,0.5f));
         transform.rotation = initialRotation;
         transform.localScale = initialScale;
 
@@ -72,44 +69,13 @@ public class MoveToGoalUnlockRPMulti : Agent
 
     }
 
-    private void SpawnCollectibles()
+    private void ResetUnlockable()
     {
-        foreach (GameObject go in unlockObjects)
-        {
-            go.transform.localPosition = RandomPosition(0.5f, new Vector3(0.5f, 0.5f, 0.5f));
-            if (!go.activeSelf) go.SetActive(true);
-            go.GetComponent<Collectible_Unlock>().Reset();
-        }
+        if (!Helper.SetRandomLocalPositionUnRestricted(lockedObject.gameObject.transform, 0.5f, Vector3.one)) Debug.Log("Failed to randomly place player");
+        lockedObject.SpawnKeys();
     }
 
-    private Vector3 RandomPosition(float y, Vector3 halfExtents)
-    {
-        LayerMask mask = LayerMask.GetMask("MLAgent-RayTest");
-        Vector3 targetPos = Vector3.zero;
-        targetPos.y = y;
-
-        do
-        {
-            targetPos.x = Random.Range(-10, 10);
-            targetPos.z = Random.Range(-8, 8);
-
-            if ((targetPos.x > 1.5) && (targetPos.z < -2.6))
-            {
-                if (Random.Range((int)0, (int)1) == 0)
-                {
-                    targetPos.x = 1.5f;
-                }
-                else
-                {
-                    targetPos.z = -2.6f;
-                }
-            }
-
-            
-        } while (Physics.CheckBox(targetPos, halfExtents,Quaternion.identity,mask));
-
-        return targetPos;
-    }
+    
 
     public override void OnActionReceived(ActionBuffers actions)
     {
@@ -123,12 +89,12 @@ public class MoveToGoalUnlockRPMulti : Agent
 
         AddReward(existentialPenalty);
 
-        if(!lockedObject.GetComponent<UnlockableObject>().Locked)
+        if(!lockedObject.Locked)
         {
             float maxReward = 1f / MaxStep;
             float proximityThreshold = 10f;
 
-            float distance = Vector3.Distance(targetTransform.position, transform.position);
+            float distance = Vector3.Distance(lockedObject.gameObject.transform.position, transform.position);
 
             if (distance < proximityThreshold)
             {
@@ -144,23 +110,29 @@ public class MoveToGoalUnlockRPMulti : Agent
         //total 12 values observed
 
         //is the wall unlocked? [bool - 1 value]
-        sensor.AddObservation(lockedObject.GetComponent<UnlockableObject>().Locked);
+        sensor.AddObservation(lockedObject.Locked);
 
         //the distance to the target [Float - 1 Values]
-        sensor.AddObservation(Vector3.Distance(targetTransform.position, transform.position));
+        sensor.AddObservation(Vector3.Distance(lockedObject.gameObject.transform.position, transform.position));
 
         //the direction to the target [Vector3 - 3 Values]
-        sensor.AddObservation((targetTransform.position - transform.position).normalized);
+        sensor.AddObservation((lockedObject.gameObject.transform.position - transform.position).normalized);
 
         //the direction we are facing [Vector3 - 3 Values]
         sensor.AddObservation(transform.forward);
 
 
-        //the distance and direction to the collectible objects [Float - 1 value, Vector3 - 3 values]
-        foreach (GameObject go in unlockObjects)
+        //the distance and direction to the nearest key [Float - 1 value, Vector3 - 3 values]
+        if (nearestKey != null && lockedObject.KeysRemaining != 0)
         {
-            sensor.AddObservation(Vector3.Distance(go.transform.position, transform.position));
-            sensor.AddObservation((go.transform.position - transform.position).normalized);
+            sensor.AddObservation(Vector3.Distance(nearestKey.transform.position, transform.position));
+            sensor.AddObservation((nearestKey.transform.position - transform.position).normalized);
+        }
+        else
+        {
+            
+            sensor.AddObservation(0f);
+            sensor.AddObservation(Vector3.zero);
         }
 
     }
@@ -180,16 +152,27 @@ public class MoveToGoalUnlockRPMulti : Agent
         switch (other.gameObject.tag)
         {
             case "TargetBlock":
-                AddReward(1f);
-                groundMeshRenderer.material = winMat;
+                if (lockedObject.Locked)
+                {
+                    AddReward(-1f);
+                    groundMeshRenderer.material = loseMat;
+                }
+                else
+                {
+                    AddReward(1f);
+                    groundMeshRenderer.material = winMat;
+                }
+                
                 EndEpisode();
                 break;
             case "Object-Key":
                 AddReward(0.6f);
-                groundMeshRenderer.material = unlockMat;
+                //set to null instead of recalulating as we won't be sure if it has been destroyed yet, instead check in Update
+                nearestKey = null;
+                
                 break;
             case "Object":
-                //SetReward(-1f);
+                SetReward(-0.05f);
                 //groundMeshRenderer.material = loseMat;
                 //EndEpisode();
                 break;
@@ -202,6 +185,14 @@ public class MoveToGoalUnlockRPMulti : Agent
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!episodeReady) return;
+        //fixedUpdate is called before OnTriggerxx therefore it is OK to check for null here from previous cycle
+        if (nearestKey == null) nearestKey = lockedObject.GetNearestKey(transform.position);
+        if (lockedObject.KeysRemaining == 0) groundMeshRenderer.material = unlockMat;
+    }
 
-   
+
+
 }

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdatePointsText()
     {
+        if (scoreTMPro == null) return;
         scoreTMPro.text = scorePreface + score.ToString("D" + scoreDigits.ToString());
     }
     private void SetScore(int scoreToSet)
