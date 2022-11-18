@@ -1,0 +1,25 @@
+MoveToGoalUnlockRayPerception2 = MoveToGoalRP11 - Was trained with MoveToGoal9 (the one which had the diagonal unlockable wall)
+Also used yaml MoveToGoalRP7.yaml
+    - But now that this works, it is not possible to add further keys, as the keys themselves are part of the observations. To add more keys, requires more observations. Instead, I want the Agent to identify and detect the keys automatically, knowing that there should be more to find if the status of the wall is locked.
+	- To do this
+
+ML Reflection
+ - Need to spend time on designing how the agent will learn - how will the agent interact with the environment
+ - Need to keep it simple
+ - 
+ 
+ Blog flow
+  - What is ML
+  - What is MLAgents
+  - Link to CodeMonkey setup
+      - description of changes for my setup - installation of latest ML-Agents from experimental packages, installation of latest PyTorch with CUDA support
+  - Initial approach - positions
+      - not good for random - better to use distance to and direction to
+  - Stuck getting agents to go into 'hole' --> suspected due to negative effect of walls, but this was disproven by disabling this
+  - Increase of decision period to encourage larger movements in same direction - to try and encourage collision with target
+  - Change from using Time.DeltaTime to Time.fixedDeltaTime as the training simulation is run at faster speeds and using deltaTime is incorrect - as this is based on frameRate and not actual run rate. Further improvement here could also be to move the PlayerMovement script into FixedUpdate instead - although not worring too much about it as it only controls the animation - rotation is also calculated in this script but using a coroutine - so independant of framerate already.
+  - Changed environment to not have a 'hole' - Agents learned OK
+  - Used the --initialize-from parameter to invoke a new learn from this one (now that they know that the target block holds a high reward) with the 'hole' back in place --> worked!
+      - training in stages to increase complexity seems to be a good approach
+  - Multi keys not possible due to current setup requireing these as observations - this prevents easy use of relearn and current neural net
+     - remove the 
