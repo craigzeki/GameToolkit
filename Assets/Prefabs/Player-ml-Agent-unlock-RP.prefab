@@ -275,7 +275,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6450423248212963474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +393,7 @@ MonoBehaviour:
   MaxStep: 0
   targetTransform: {fileID: 0}
   followThisPlayersMovement: {fileID: 9120955823124748270}
+  unlockObjects: []
   lockedObject: {fileID: 0}
   winMat: {fileID: 2100000, guid: 6147eca396e023247bcc5f290d6161dd, type: 2}
   loseMat: {fileID: 2100000, guid: d1f82c29bd1785f42b8cc8906426cca4, type: 2}

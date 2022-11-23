@@ -36,6 +36,8 @@ MonoBehaviour:
   loseMat: {fileID: 2100000, guid: d1f82c29bd1785f42b8cc8906426cca4, type: 2}
   unlockMat: {fileID: 2100000, guid: 1bfd81b976818c04c9dc7ffd1c7c1e62, type: 2}
   groundMeshRenderer: {fileID: 5224558087666279097}
+  wallUnTouchedMat: {fileID: 2100000, guid: af5f5c58550a89a40a22f5e3c6728218, type: 2}
+  wallTouchedMat: {fileID: 2100000, guid: d1f82c29bd1785f42b8cc8906426cca4, type: 2}
 --- !u!1 &5224558086512437110
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5224558087934092836
 Transform:
   m_ObjectHideFlags: 0
@@ -794,10 +796,14 @@ PrefabInstance:
       propertyPath: m_DefaultControlScheme
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6450423248212963475, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: 1b4842ab3ac052544bb93f2625a245f2, type: 3}
     - target: {fileID: 8107066044379473703, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
       propertyPath: m_BehaviorName
       value: MoveToGoalUnlockRPMulti
@@ -888,6 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8407013002760111677, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
+    - {fileID: 1890539597976542981, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79c3d1ed48c4ba14ea1c9e82843f26d9, type: 3}
 --- !u!114 &8237840622962382556 stripped
 MonoBehaviour:
@@ -1138,6 +1145,10 @@ PrefabInstance:
       propertyPath: keyPrefab
       value: 
       objectReference: {fileID: 8030405592884255353, guid: e5afb020f245fe047babfa42b363c9e3, type: 3}
+    - target: {fileID: 1748296226602907196, guid: da34cdf14005b7249aa8ed458bb625b5, type: 3}
+      propertyPath: numberOfKeys
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8844381480678195664, guid: da34cdf14005b7249aa8ed458bb625b5, type: 3}
       propertyPath: m_RootOrder
       value: 7

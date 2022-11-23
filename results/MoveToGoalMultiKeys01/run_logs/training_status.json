@@ -1,0 +1,65 @@
+{
+    "MoveToGoalUnlockRPMulti": {
+        "checkpoints": [
+            {
+                "steps": 445701,
+                "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-445701.onnx",
+                "reward": 2.033484193185965,
+                "creation_time": 1668858524.6511996,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-445701.pt"
+                ]
+            },
+            {
+                "steps": 499984,
+                "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-499984.onnx",
+                "reward": 1.5315174801009042,
+                "creation_time": 1668859194.3074195,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-499984.pt"
+                ]
+            },
+            {
+                "steps": 848974,
+                "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-848974.onnx",
+                "reward": null,
+                "creation_time": 1668859526.559779,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-848974.pt"
+                ]
+            },
+            {
+                "steps": 999984,
+                "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-999984.onnx",
+                "reward": 1.7909066025167704,
+                "creation_time": 1668859766.2955277,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-999984.pt"
+                ]
+            },
+            {
+                "steps": 1428025,
+                "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-1428025.onnx",
+                "reward": 2.1344949236282935,
+                "creation_time": 1668860164.9898725,
+                "auxillary_file_paths": [
+                    "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-1428025.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1428025,
+            "file_path": "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti.onnx",
+            "reward": 2.1344949236282935,
+            "creation_time": 1668860164.9898725,
+            "auxillary_file_paths": [
+                "results\\MoveToGoalMultiKeys01\\MoveToGoalUnlockRPMulti\\MoveToGoalUnlockRPMulti-1428025.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.0+cu117"
+    }
+}

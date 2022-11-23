@@ -1,7 +1,17 @@
 MoveToGoalUnlockRayPerception2 = MoveToGoalRP11 - Was trained with MoveToGoal9 (the one which had the diagonal unlockable wall)
 Also used yaml MoveToGoalRP7.yaml
     - But now that this works, it is not possible to add further keys, as the keys themselves are part of the observations. To add more keys, requires more observations. Instead, I want the Agent to identify and detect the keys automatically, knowing that there should be more to find if the status of the wall is locked.
-	- To do this
+	- To do this we get the locked object to manage its own keys and spawn a random number
+      - We then calculate the nearest key and provide the direction and distance as observations - this is only updated once the key has been collected
+
+MoveToGoalMultiKeys01 shows this very well
+
+Can it now be used with more random keys than it was trained with? --> YeS
+Does it work with extra walls - Not really
+
+New trsining with 1 wall - MoveToGoalMultiKeysWalls01
+New training with 3 walls - MoveToGoalMultiKeysWalls02
+
 
 ML Reflection
  - Need to spend time on designing how the agent will learn - how will the agent interact with the environment

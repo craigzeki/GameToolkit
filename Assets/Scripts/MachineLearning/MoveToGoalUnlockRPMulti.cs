@@ -17,9 +17,13 @@ public class MoveToGoalUnlockRPMulti : Agent
     [SerializeField] private Material loseMat;
     [SerializeField] private Material unlockMat;
     [SerializeField] private MeshRenderer groundMeshRenderer;
-
-
     
+    [SerializeField] private Material wallUnTouchedMat;
+    [SerializeField] private Material wallTouchedMat;
+
+
+
+    private List<MeshRenderer> wallMeshRenderers = new List<MeshRenderer>();
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
@@ -54,11 +58,21 @@ public class MoveToGoalUnlockRPMulti : Agent
         //unlockIncrementReward = 0.5f / lockedObject.KeysRemaining;
         nearestKey = lockedObject.GetNearestKey(transform.position);
         episodeReady = true;
+        ResetWallMats(wallUnTouchedMat);
+    }
+
+    private void ResetWallMats(Material mat)
+    {
+        foreach(MeshRenderer renderer in wallMeshRenderers)
+        {
+            renderer.material = mat;
+        }
+        wallMeshRenderers.Clear();
     }
 
     private void SpawnPlayer()
     {
-        if (!Helper.SetRandomLocalPositionUnRestricted(transform, 0.5f, new Vector3(0.5f, 1.1f, 0.5f))) Debug.Log("Failed to randomly place player");
+        if (!Helper.SetRandomLocalPositionUnRestricted(transform, 1.0f)) Debug.Log("Failed to randomly place player");
         
         transform.rotation = initialRotation;
         transform.localScale = initialScale;
@@ -71,7 +85,7 @@ public class MoveToGoalUnlockRPMulti : Agent
 
     private void ResetUnlockable()
     {
-        if (!Helper.SetRandomLocalPositionUnRestricted(lockedObject.gameObject.transform, 0.5f, Vector3.one)) Debug.Log("Failed to randomly place player");
+        if (!Helper.SetRandomLocalPositionUnRestricted(lockedObject.gameObject.transform, 0.5f)) Debug.Log("Failed to randomly place locked object");
         lockedObject.SpawnKeys();
     }
 
@@ -130,9 +144,9 @@ public class MoveToGoalUnlockRPMulti : Agent
         }
         else
         {
-            
-            sensor.AddObservation(0f);
-            sensor.AddObservation(Vector3.zero);
+            //no key remaining so instead set to the target block
+            sensor.AddObservation(Vector3.Distance(lockedObject.gameObject.transform.position, transform.position));
+            sensor.AddObservation((lockedObject.gameObject.transform.position - transform.position).normalized);
         }
 
     }
@@ -177,11 +191,33 @@ public class MoveToGoalUnlockRPMulti : Agent
                 //EndEpisode();
                 break;
             case "Wall":
-                SetReward(-0.1f);
-                groundMeshRenderer.material = loseMat;
+                SetReward(-0.5f);
+                MeshRenderer tempMR;
+                if(other.gameObject.TryGetComponent<MeshRenderer>(out tempMR))
+                {
+                    tempMR.material = wallTouchedMat;
+                    wallMeshRenderers.Add(tempMR);
+                }
                 
+
                 break;
 
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "TargetBlock":
+                break;
+            case "Object-Key":
+                break;
+            case "Object":
+                break;
+            case "Wall":
+                SetReward(-0.1f);
+                break;
         }
     }
 

@@ -19,9 +19,12 @@ public class UnlockableTargetMulti : MonoBehaviour
 
     public void Unlock(GameObject key)
     {
-        if (keysRemaining > 0) keysRemaining--;
-        if (keysRemaining == 0) locked = false;
-        keys.Remove(key.GetInstanceID());
+        if(keys.ContainsKey(key.GetInstanceID()))
+        {
+            if (keysRemaining > 0) keysRemaining--;
+            if (keysRemaining == 0) locked = false;
+            keys.Remove(key.GetInstanceID());
+        }
     }
 
     public void SpawnKeys()
@@ -45,7 +48,7 @@ public class UnlockableTargetMulti : MonoBehaviour
             GameObject go = Instantiate(keyPrefab, this.gameObject.transform.parent);
             keys.Add(go.GetInstanceID(), go);
 
-            if(!Helper.SetRandomLocalPositionUnRestricted(go.transform, 0.5f, Vector3.one)) Debug.Log("Failed to randomly place key");
+            if(!Helper.SetRandomLocalPositionUnRestricted(go.transform, 0.5f)) Debug.Log("Failed to randomly place key");
 
             go.GetComponent<Collectible_UnlockMulti>().objectToUnlock = this;
             //go.GetComponent<Collectible_UnlockMulti>().Reset();
