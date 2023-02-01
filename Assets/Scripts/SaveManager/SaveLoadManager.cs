@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using UnityEditor;
+using TMPro;
 //using Unity.VisualScripting;
 
 public class SaveLoadManager : MonoBehaviour
@@ -71,6 +72,7 @@ public class SaveLoadManager : MonoBehaviour
     [EnumNamedArray(typeof(ObjectType))]
     [SerializeField] private GameObject[] objectTypePrefabs = new GameObject[(int)ObjectType.NUM_OF_OBJECTS];
     [SerializeField] private GameObject savingLoadingIcon;
+    [SerializeField] private TextMeshProUGUI statusMessage;
     
     private Dictionary<SaveType, ObjectHashTable> hashTables = new Dictionary<SaveType,ObjectHashTable>();
     private string textToParse;
@@ -369,6 +371,18 @@ public class SaveLoadManager : MonoBehaviour
 
         //show hide the saving icon
         savingLoadingIcon.SetActive(loadGameRequested || saveGameRequested);
+        if(loadGameRequested)
+        {
+            statusMessage.text = "Loading...";
+        }
+        else if(saveGameRequested)
+        {
+            statusMessage.text = "Saving...";
+        }
+        else
+        {
+            statusMessage.text = "";
+        }
     }
 
     private void LoadGameFromJson(string jsonString)

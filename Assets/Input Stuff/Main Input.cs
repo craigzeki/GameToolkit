@@ -360,11 +360,33 @@ public class @MainInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b432a32d-f11d-4386-a380-a651ccccae21"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default;Player"",
+                    ""action"": ""Save_Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fd28e3b7-f6f6-4fd3-9844-0f81fbb32952"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Default"",
+                    ""action"": ""Load_Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""828a4b8b-ac48-431c-b98a-fb8fe70e2377"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default;Player"",
                     ""action"": ""Load_Game"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
